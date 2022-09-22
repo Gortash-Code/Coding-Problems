@@ -1,0 +1,47 @@
+#Parameters
+#   n->Size of the square grid on each side
+#   grid->NxN area dipicting the hero, the princess and empty space
+#Ouput
+#   prints to console the directions to get from the hero's starting position to the princess's starting position
+def displayPathtoPrincess(n,grid):
+    m=getIndexC('m', grid)
+    p=getIndexC('p', grid)
+    s=""
+    while m[0]>p[0]:
+        s=s+"UP\n"
+        m[0]-=1
+    while m[0]<p[0]:
+        s=s+"DOWN\n"
+        m[0]+=1
+    while m[1]>p[1]:
+        s=s+"LEFT\n"
+        m[1]-=1
+    while m[1]<p[1]:
+        s=s+"RIGHT\n"
+        m[1]+=1
+    print(s)
+    
+
+#Parameters
+#   c-> the character being searched for
+#   grid-> the grid on which to search for the character
+#Output
+#   A two digit array, the first digit is the Y-coorinate of the character on the grid and the second digit is the X-coordinate of the character on the grid
+def getIndexC(c, grid):
+    count=0
+    count1=0
+    for i in grid:
+        count=0
+        for j in i:
+            if j==c:
+                return [count1,count]
+            count+=1
+        count1+=1
+
+#Main function
+m = int(input())
+grid = [] 
+for i in range(0, m): 
+    grid.append(input().strip())
+
+displayPathtoPrincess(m,grid)

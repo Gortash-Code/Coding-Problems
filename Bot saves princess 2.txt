@@ -1,0 +1,41 @@
+#Parameters
+#   n-> length of a side of the square grid
+#   r-> Y-coordiante of the hero character on the grid
+#   c-> X-coordiante of the hero character on the grid
+#   grid-> NxN character grid depicting the hero, the princess and empty space
+#Output
+#   returns a string indicating which direction the hero should go to move toward the princess for the next turn
+def nextMove(n,r,c,grid):
+    p=getIndexC('p', grid)
+    if r<p[0]:
+        return "DOWN"
+    elif r>p[0]:
+        return "UP"
+    if c<p[1]:
+        return "RIGHT"
+    elif c>p[1]:
+        return "LEFT"
+    return ""
+#Parameters
+#   c-> the character being searched for
+#   grid-> the grid on which to search for the character
+#Output
+#   A two digit array, the first digit is the Y-coorinate of the character on the grid and the second digit is the X-coordinate of the character on the grid
+def getIndexC(c, grid):
+    count=0
+    count1=0
+    for i in grid:
+        count=0
+        for j in i:
+            if j==c:
+                return [count1,count]
+            count+=1
+        count1+=1
+
+n = int(input())
+r,c = [int(i) for i in input().strip().split()]
+grid = []
+for i in range(0, n):
+    grid.append(input())
+
+print(nextMove(n,r,c,grid))
