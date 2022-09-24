@@ -1,3 +1,4 @@
+#ADDITIONAL NOTE: Also works for BotClean Stochastic Model problem as well
 #Parameters
 #	posr-> Y-coordinate of the robot character
 #	posc-> X-coordinate of the robot character
