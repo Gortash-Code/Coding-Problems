@@ -1,0 +1,60 @@
+#Parameters
+#	posr-> Y-coordinate of the robot character
+#	posc-> X-coordinate of the robot character
+#	board-> NxN grid depicting the robot character ('b'), the dust characters ('d') and empty space ('-')
+#Output
+#	Prints "CLEAN" if robot is currently on a dust square
+#	Otherwise prints the correct direction (UP/DOWN/LEFT/RIGHT) toward the nearest dust square
+def next_move(posr, posc, board):
+    if board[posr][posc]=='d':
+        print("CLEAN")    
+    else:
+        next_bunny=get_bunny_coordinates(posr, posc, board)
+        if posr<next_bunny[0]:
+            print("DOWN")
+        elif posr>next_bunny[0]:
+            print("UP")
+        elif posc>next_bunny[1]:
+            print("LEFT")
+        else:
+            print("RIGHT")
+#Parameters
+#	posr-> Y-coordinate of the square you wish to get the distance from
+#	posc-> X-coordinate of the square you wish to get the distance from
+#	board-> the NxN grid to check distances (NOTE: content of board does not matter as it is only used to get its size)
+#Output
+#	Returns a grid equal in size to the board input which has distance from point [posr][posc] stored on each square
+def get_distance(posr, posc, board):
+    side=[-1]*len(board[0])
+    grid=[side]*len(board[0])
+    for i in range(len(side)):
+        for j in range(len(side)):
+            grid[i][j] = abs(posr-i)+abs(posc-j)
+    return grid
+#Parameters	
+#	posr-> Y-coordinate of the robot character
+#	posc-> X-coordinate of the robot character
+#	board-> NxN grid depicting the robot character ('b'), the dust characters ('d') and empty space ('-')
+#Output
+#	Returns x and y coordinate of the nearest dust square from the robot
+def get_bunny_coordinates(posr, posc, board):
+    grid=get_distance(posr, posc, board)
+    nearist_coord=[None]*2
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+              if(board[i][j]=='d'):
+                         if nearist_coord[0]==None:
+                            nearist_coord=[i,j]
+                         else:
+                            if grid[i][j]<grid[nearist_coord[0]][nearist_coord[1]]:
+                                nearist_coord=[i,j]
+    return nearist_coord
+              
+    
+
+# Tail starts here
+
+if __name__ == "__main__":
+    pos = [int(i) for i in input().strip().split()]
+    board = [[j for j in input().strip()] for i in range(5)]
+    next_move(pos[0], pos[1], board)
