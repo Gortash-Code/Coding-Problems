@@ -1,0 +1,48 @@
+#Parameters
+#   arr-> array of integers which are positive, negative or equal to zero
+#Ouput
+#   Prints to console the ratio of positive numbers to total number of elements in array followed by the similar ratio for the negative numbers and the zero-integers
+def plusMinus(arr):
+    pos=0
+    neg=0
+    zer=0
+    for i in arr:
+        if i<0:
+            neg+=1
+        elif i==0:
+            zer+=1
+        else:
+            pos+=1
+    print("{:.6f}".format(float(pos/(pos+zer+neg))))
+    print("{:.6f}".format(float(neg/(pos+zer+neg))))
+    print("{:.6f}".format(float(zer/(pos+zer+neg))))
+
+#Parameters
+#   arr-> array of integers of size 5
+#Output
+#   Prints the sum of all integers in the array without the maximum integer and the sum of all the integers in the array without the minimum integer seperated by a space character
+def miniMaxSum(arr):
+    min=arr[0]
+    max=arr[0]
+    sum=0
+    for i in arr:
+        if i<min:
+            min=i
+        if i>max:
+            max=i
+        sum+=i
+    print(str((sum-max)) + " " + str((sum-min)))
+
+#Parameters
+#   s-> String representing a time stamp in the AM/PM format
+#Output
+#   Converts timestamp from AM/PM format to military time (24-hour clock) and returns it as a string
+def timeConversion(s):
+    if s[8]=='P':
+        if int(s[0:2])==12:
+            return s[0:8]
+        return str(int(s[0:2])+12)+s[2:8]
+    else:
+        if int(s[0:2])==12:
+            return "00"+s[2:8]
+        return s[0:8]
