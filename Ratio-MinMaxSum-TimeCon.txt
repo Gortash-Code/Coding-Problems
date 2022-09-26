@@ -46,3 +46,61 @@ def timeConversion(s):
         if int(s[0:2])==12:
             return "00"+s[2:8]
         return s[0:8]
+
+#Parameters
+#   a-> list of integers
+#Output
+#   Returns any integer that appears an odd number of times in a
+def lonelyinteger(a):
+    l=[]
+    for i in a:
+        if i in l:
+            l.remove(i)
+        else:
+            l.append(i)
+    return l[0]
+
+
+
+
+#Parameters
+#   arr-> list of integers
+#Output
+#   Returns the sum of the diagnal elements in the two dimensional array on the diagonal starting at (0,0) and ending at (n.n) where n is the length of the array on a side
+def get_first(arr):
+    sum=0
+    for i in range(len(arr)):
+        sum+=arr[i][i]
+    return sum
+#Parameters
+#   arr-> list of integers
+#Output
+#   Returns the sum of the diagnal elements in the two dimensional array on the diagonal starting at (0,n) and ending at (n.0) where n is the length of the array on a side
+def get_second(arr):
+    sum=0
+    for i in range(len(arr)):
+        sum+=arr[i][(len(arr)-1)-i]
+    return sum
+#Parameters
+#   arr-> list of integers
+#Output
+#   Returns the absolute difference of the sums of diagonal from (0,0) to (n,n) and (0,n) to (n,0)
+def diagonalDifference(arr):
+    return abs(get_first(arr)-get_second(arr))
+
+#class called Person which has a variable age which can be incremented by one with yearPasses(self) function. Can check the age status with the amIOld(self) function.
+class Person:
+    def __init__(self,initialAge):
+        self.age=initialAge
+    def amIOld(self):
+        if self.age<0:
+            print("Age is not valid, setting age to 0.")
+            self.age=0
+        if self.age<13:
+            print("You are young.")
+        elif self.age<18:
+            print("You are a teenager.")
+        else:
+            print("You are old.")
+    def yearPasses(self):
+        self.age+=1
