@@ -1,0 +1,10 @@
+#Parameters
+#   x-> represents the maximum x-coordinate contained in a cuboid starting at 0
+#   y-> represents the maximum y-coordinate contained in a cuboid starting at 0
+#   z-> represents the maximum z-coordinate contained in a cuboid starting at 0
+#   n-> integer representing the value which x+y+z cannot equal
+#Output
+#   Prints all 3-dimensional points represented by integers in a cuboid whose coordinates to not sum to given number n
+def cartesian_lessThanSum(n,x,y,z):
+    out = [[l, m, o] for l in range(x+1) for m in range(y+1) for o in range(z+1) if (l+m+o)!=n]
+    print(out)
